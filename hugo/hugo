@@ -1,0 +1,12 @@
+#!/bin/bash -el
+hugo() {
+  cwd=$(pwd)
+  docker run --rm \
+    --volume "${cwd}:/workspace" \
+    --workdir "/workspace" \
+    --interactive \
+    --tty \
+    technolog/run-hugo $@
+}
+
+hugo "$@"
