@@ -1,0 +1,22 @@
+#!/bin/bash -el
+# -e Makes sure we exit on failures
+# -l Gives us a login shell
+
+# Define a function that replaces our command
+yarn() {
+    # docker run
+    # Remove the container when it exits
+    # Mount ./ into the container at /workspace
+    # Allow interactive shell
+    # Provision a TTY
+    # Specify the container and pass any args
+  docker run \
+    --rm \
+    --volume "$(pwd):/workspace" \
+    --interactive \
+    --tty \
+    technolog/run-yarn $@
+}
+
+# Run the function, passing in all args
+yarn "$@"
